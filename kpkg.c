@@ -6,7 +6,7 @@
 static const char *argv0;
 
 static void usage(void) {
-    fprintf(stderr,"usage: %s [-i] ...\n", argv0);
+    fprintf(stderr,"usage: %s [-i] [-k] ...\n", argv0);
 }
 
 int fetchsrc(const char *url) {
