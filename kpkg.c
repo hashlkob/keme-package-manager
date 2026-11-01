@@ -58,16 +58,21 @@ int main(int argc, char *argv[]) {
     }
     
     if (ins == 1) {
-	
+	char *srcl = NULL;
+	char *srcu = srcl;
 	while (fgets(rb, 256, f)) {
-	    line++;
-	
-	if (line == 2) {
-	    char *srcl = strchr(rb, '=');	
+	    line++;	
+	if (line == 3) {
+	     srcl = strchr(rb, '=') + 2 ;	
+	    break;
 	    }
+	// snprintf("");
+	// trying to find out how to make an fstring in a variable
 	}
 
-    fetchsrc(srcl);
+    if (srcl != NULL)	
+    	fprintf(stdout,"%s", srcu);
+	// fetchsrc(srcl);
     }
 
     return 0;
