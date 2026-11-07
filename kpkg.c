@@ -20,6 +20,7 @@ int fetchsrc(const char *url) {
 }
 
 int main(int argc, char *argv[]) {
+
     int info = 0;
     int ins = 0;
     int line = 0;
@@ -59,20 +60,17 @@ int main(int argc, char *argv[]) {
     
     if (ins == 1) {
 	char *srcl = NULL;
-	char *srcu = srcl;
 	while (fgets(rb, 256, f)) {
 	    line++;	
 	if (line == 3) {
-	     srcl = strchr(rb, '=') + 2 ;	
+	    srcl[strcspn(srcl, "\n")] = '\0';
+	    srcl = strchr(rb, '=') + 2 ;	
 	    break;
 	    }
-	// snprintf("");
-	// trying to find out how to make an fstring in a variable
 	}
 
     if (srcl != NULL)	
-    	fprintf(stdout,"%s", srcu);
-	// fetchsrc(srcl);
+	fetchsrc(srcl);
     }
 
     return 0;
