@@ -1,13 +1,22 @@
 /* rewrite in openbsd knf */
 
 #include <stdio.h>
-#include <sys/types.h>
 #include <stdlib.h>
+#include <errno.h>
 #include <pwd.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/types.h>
 
 static const char *argv0;
+
+static void
+usage(void)
+{
+	fprintf(stderr,"usage: %s [-d] [-k] [package ...]\n", argv0);
+	exit(1);
+}
+
 
 static int
 get_home(void)
@@ -17,13 +26,6 @@ get_home(void)
 	char passwd_buffer[512];
 	getpwuid_r(getuid(), &pw, passwd_buffer, 512, &result);
 	return 0;
-}
-
-static void
-usage(void)
-{
-	fprintf(stderr,"usage: %s [-d] [-k] [package ...]\n", argv0);
-	exit(1);
 }
 
 int
